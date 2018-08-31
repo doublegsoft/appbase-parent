@@ -1,0 +1,477 @@
+<!--
+ !!! Copyright 2016 doublegsoft.net
+ !!!
+ !!! Licensed under the Apache License, Version 2.0 (the "License");
+ !!! you may not use this file except in compliance with the License.
+ !!! You may obtain a copy of the License at
+ !!!
+ !!!     http://www.apache.org/licenses/LICENSE-2.0
+ !!!
+ !!! Unless required by applicable law or agreed to in writing, software
+ !!! distributed under the License is distributed on an "AS IS" BASIS,
+ !!! WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ !!! See the License for the specific language governing permissions and
+ !!! limitations under the License.
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                           http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	       
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.doublegsoft.appbase</groupId>
+	<artifactId>appbase-parent</artifactId>
+	<version>3.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- component -->
+		<appbase-common.version>3.0</appbase-common.version>
+		<appbase-common-spring.version>3.0</appbase-common-spring.version>
+
+		<appbase-dataset.version>2.0</appbase-dataset.version>
+		<appbase-documentation.version>1.0</appbase-documentation.version>
+		<appbase-documentation-spring.version>1.0</appbase-documentation-spring.version>
+		<appbase-dictionary.version>1.0</appbase-dictionary.version>
+		<appbase-metadata.version>1.0</appbase-metadata.version>
+		<appbase-changelog.version>1.0</appbase-changelog.version>
+		<appbase-desktop.version>1.0</appbase-desktop.version>
+		<appbase-id.version>1.0</appbase-id.version>
+
+		<!-- proprietary -->
+		<codehappy.version>1.0</codehappy.version>
+
+		<!-- spec -->
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		<javax.annotation-api.version>1.2</javax.annotation-api.version>
+
+		<!-- lib -->
+		<jcommons-utils.version>1.5</jcommons-utils.version>
+		<spring.version>5.0.5.RELEASE</spring.version>
+		<slf4j.version>1.7.12</slf4j.version>
+		<fastjson.version>1.2.6</fastjson.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+		<commons-io.version>1.3.2</commons-io.version>
+		<freemarker.version>2.3.27-incubating</freemarker.version>
+		<aspectj.version>1.8.6</aspectj.version>
+		<snakeyaml.version>1.16</snakeyaml.version>
+		<antlr4.version>4.5.1-1</antlr4.version>
+		<javatuples.version>1.2</javatuples.version>
+		<groovy.version>2.4.13</groovy.version>
+		<mail.version>1.6.0</mail.version>
+		<jms.version>2.0.1</jms.version>
+		<jfreechart.version>1.0.19</jfreechart.version>
+		<jsoup.version>1.11.2</jsoup.version>
+		<logback.version>1.2.3</logback.version>
+		<lucene.version>7.4.0</lucene.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+
+		<!-- test -->
+		<junit.version>4.12</junit.version>
+		<bonecp.version>0.8.0.RELEASE</bonecp.version>
+		<tomcat.version>8.0.26</tomcat.version>
+		<hsqldb.version>2.3.3</hsqldb.version>
+		<httpclient.version>4.5</httpclient.version>
+		<jsqlparser.version>0.9.4</jsqlparser.version>
+		<sqlite-jdbc.version>3.8.11.2</sqlite-jdbc.version>
+		<poi.version>3.14</poi.version>
+		<ooxml.version>1.3</ooxml.version>
+
+		<!-- maven -->
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+	</properties>
+
+	<build>
+		<pluginManagement>
+		  <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>${maven-compiler-plugin.version}</version>
+	        <configuration>
+	          <source>1.8</source>
+	          <target>1.8</target>
+	        </configuration>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-source-plugin</artifactId>
+	        <version>${maven-source-plugin.version}</version>
+	        <executions>
+	          <execution>
+	            <id>attach-sources</id>
+	            <goals>
+	              <goal>jar</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-javadoc-plugin</artifactId>
+	        <version>${maven-javadoc-plugin.version}</version>
+	        <executions>
+	          <execution>
+	            <id>attach-javadocs</id>
+	            <goals>
+	              <goal>jar</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.jacoco</groupId>
+	        <artifactId>jacoco-maven-plugin</artifactId>
+	        <version>${jacoco-maven-plugin.version}</version>
+	        <executions>
+	          <execution>
+	            <id>prepare-agent</id>
+	            <goals>
+	              <goal>prepare-agent</goal>
+	            </goals>
+	          </execution>
+	          <execution>
+	            <id>report</id>
+	            <phase>prepare-package</phase>
+	            <goals>
+	              <goal>report</goal>
+	            </goals>
+	          </execution>
+	          <execution>
+	            <id>post-unit-test</id>
+	            <phase>test</phase>
+	            <goals>
+	              <goal>report</goal>
+	            </goals>
+	            <configuration>
+	              <dataFile>target/jacoco.exec</dataFile>
+	              <!-- Sets the output directory for the code coverage report. -->
+	              <outputDirectory>target/jacoco-ut</outputDirectory>
+	            </configuration>
+	          </execution>
+	        </executions>
+	        <configuration>
+	          <systemPropertyVariables>
+	            <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+	          </systemPropertyVariables>
+	        </configuration>
+	      </plugin>
+	    </plugins>
+		</pluginManagement>
+	</build>
+  
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.doublegsoft.codehappy</groupId>
+				<artifactId>codehappy-model</artifactId>
+				<version>${codehappy.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-common</artifactId>
+				<version>${appbase-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-common-spring</artifactId>
+				<version>${appbase-common-spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-dataset</artifactId>
+				<version>${appbase-dataset.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-documentation</artifactId>
+				<version>${appbase-documentation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-documentation-spring</artifactId>
+				<version>${appbase-documentation-spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-metadata</artifactId>
+				<version>${appbase-metadata.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-changelog</artifactId>
+				<version>${appbase-changelog.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-id</artifactId>
+				<version>${appbase-id.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.doublegsoft.jcommons</groupId>
+				<artifactId>jcommons-utils</artifactId>
+				<version>${jcommons-utils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.doublegsoft.appbase</groupId>
+				<artifactId>appbase-dictionary</artifactId>
+				<version>${appbase-dictionary.version}</version>
+			</dependency>
+			<!-- spring框架 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>${javax.annotation-api.version}</version>
+			</dependency>
+			<!-- 日志 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<!-- 服务器端图表 -->
+			<dependency>
+				<groupId>org.jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>${jfreechart.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+			</dependency>
+			<!-- JVM支持的脚本，Groovy -->
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>${groovy.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jolbox</groupId>
+				<artifactId>bonecp</artifactId>
+				<version>${bonecp.version}</version>
+			</dependency>
+			<!-- JSON序列化和反序列化 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<!-- SQL解析 -->
+			<dependency>
+				<groupId>com.github.jsqlparser</groupId>
+				<artifactId>jsqlparser</artifactId>
+				<version>${jsqlparser.version}</version>
+			</dependency>
+			<!-- HTML解析 -->
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${jsoup.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<!-- OFFICE操作 -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-scratchpad</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml-schemas</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>ooxml-schemas</artifactId>
+				<version>${ooxml.version}</version>
+			</dependency>
+			<!-- HTTP客户端 -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-core</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-logging-juli</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-jasper</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>${snakeyaml.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.xerial</groupId>
+				<artifactId>sqlite-jdbc</artifactId>
+				<version>${sqlite-jdbc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			<!-- 邮件 -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>javax.mail-api</artifactId>
+				<version>${mail.version}</version>
+			</dependency>
+			<!-- 消息队列 -->
+			<dependency>
+				<groupId>javax.jms</groupId>
+				<artifactId>javax.jms-api</artifactId>
+				<version>${jms.version}</version>
+			</dependency>
+			<!-- antlr4自定义DSL -->
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4</artifactId>
+				<version>${antlr4.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javatuples</groupId>
+				<artifactId>javatuples</artifactId>
+				<version>${javatuples.version}</version>
+			</dependency>
+			<!-- 拼音 -->
+			<dependency>
+		    <groupId>com.belerweb</groupId>
+		    <artifactId>pinyin4j</artifactId>
+		    <version>${pinyin4j.version}</version>
+			</dependency>
+			<!-- 模板引擎 -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency>
+			<!-- 搜索引擎 -->
+			<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-core</artifactId>
+		    <version>${lucene.version}</version>
+		  </dependency>
+		  <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queryparser</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      
+		  <!-- 测试 -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+			<dependency> 
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.1.0</version>
+        <scope>test</scope>
+      </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+	</distributionManagement>
+</project>
