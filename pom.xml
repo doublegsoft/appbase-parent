@@ -1,41 +1,34 @@
-<!--
- !!! Copyright 2016 doublegsoft.net
- !!!
- !!! Licensed under the Apache License, Version 2.0 (the "License");
- !!! you may not use this file except in compliance with the License.
- !!! You may obtain a copy of the License at
- !!!
- !!!     http://www.apache.org/licenses/LICENSE-2.0
- !!!
- !!! Unless required by applicable law or agreed to in writing, software
- !!! distributed under the License is distributed on an "AS IS" BASIS,
- !!! WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- !!! See the License for the specific language governing permissions and
- !!! limitations under the License.
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+<!-- !!! Copyright 2016 doublegsoft.net !!! !!! Licensed under the Apache 
+	License, Version 2.0 (the "License"); !!! you may not use this file except 
+	in compliance with the License. !!! You may obtain a copy of the License 
+	at !!! !!! http://www.apache.org/licenses/LICENSE-2.0 !!! !!! Unless required 
+	by applicable law or agreed to in writing, software !!! distributed under 
+	the License is distributed on an "AS IS" BASIS, !!! WITHOUT WARRANTIES OR 
+	CONDITIONS OF ANY KIND, either express or implied. !!! See the License for 
+	the specific language governing permissions and !!! limitations under the 
+	License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 	                           http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	       
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.doublegsoft.appbase</groupId>
 	<artifactId>appbase-parent</artifactId>
-	<version>3.0</version>
+	<version>3.1</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- component -->
-		<appbase-common.version>3.0</appbase-common.version>
-		<appbase-common-spring.version>3.0</appbase-common-spring.version>
+		<appbase-common.version>3.1</appbase-common.version>
+		<appbase-common-spring.version>3.1</appbase-common-spring.version>
 
 		<appbase-dataset.version>2.0</appbase-dataset.version>
 		<appbase-documentation.version>1.0</appbase-documentation.version>
 		<appbase-documentation-spring.version>1.0</appbase-documentation-spring.version>
 		<appbase-dictionary.version>1.0</appbase-dictionary.version>
-		<appbase-metadata.version>1.0</appbase-metadata.version>
+		<appbase-metadata.version>2.0</appbase-metadata.version>
 		<appbase-changelog.version>1.0</appbase-changelog.version>
 		<appbase-desktop.version>1.0</appbase-desktop.version>
 		<appbase-id.version>1.0</appbase-id.version>
@@ -49,7 +42,8 @@
 
 		<!-- lib -->
 		<jcommons-utils.version>1.5</jcommons-utils.version>
-		<spring.version>5.0.5.RELEASE</spring.version>
+		<springboot.version>2.1.1.RELEASE</springboot.version>
+		<spring.version>5.1.3.RELEASE</spring.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<fastjson.version>1.2.6</fastjson.version>
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
@@ -57,7 +51,7 @@
 		<freemarker.version>2.3.27-incubating</freemarker.version>
 		<aspectj.version>1.8.6</aspectj.version>
 		<snakeyaml.version>1.16</snakeyaml.version>
-		<antlr4.version>4.5.1-1</antlr4.version>
+		<antlr4.version>4.7.1</antlr4.version>
 		<javatuples.version>1.2</javatuples.version>
 		<groovy.version>2.4.13</groovy.version>
 		<mail.version>1.6.0</mail.version>
@@ -88,83 +82,83 @@
 
 	<build>
 		<pluginManagement>
-		  <plugins>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <version>${maven-compiler-plugin.version}</version>
-	        <configuration>
-	          <source>1.8</source>
-	          <target>1.8</target>
-	        </configuration>
-	      </plugin>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-source-plugin</artifactId>
-	        <version>${maven-source-plugin.version}</version>
-	        <executions>
-	          <execution>
-	            <id>attach-sources</id>
-	            <goals>
-	              <goal>jar</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-	      </plugin>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-javadoc-plugin</artifactId>
-	        <version>${maven-javadoc-plugin.version}</version>
-	        <executions>
-	          <execution>
-	            <id>attach-javadocs</id>
-	            <goals>
-	              <goal>jar</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-	      </plugin>
-	      <plugin>
-	        <groupId>org.jacoco</groupId>
-	        <artifactId>jacoco-maven-plugin</artifactId>
-	        <version>${jacoco-maven-plugin.version}</version>
-	        <executions>
-	          <execution>
-	            <id>prepare-agent</id>
-	            <goals>
-	              <goal>prepare-agent</goal>
-	            </goals>
-	          </execution>
-	          <execution>
-	            <id>report</id>
-	            <phase>prepare-package</phase>
-	            <goals>
-	              <goal>report</goal>
-	            </goals>
-	          </execution>
-	          <execution>
-	            <id>post-unit-test</id>
-	            <phase>test</phase>
-	            <goals>
-	              <goal>report</goal>
-	            </goals>
-	            <configuration>
-	              <dataFile>target/jacoco.exec</dataFile>
-	              <!-- Sets the output directory for the code coverage report. -->
-	              <outputDirectory>target/jacoco-ut</outputDirectory>
-	            </configuration>
-	          </execution>
-	        </executions>
-	        <configuration>
-	          <systemPropertyVariables>
-	            <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
-	          </systemPropertyVariables>
-	        </configuration>
-	      </plugin>
-	    </plugins>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>prepare-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>post-unit-test</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+							<configuration>
+								<dataFile>target/jacoco.exec</dataFile>
+								<!-- Sets the output directory for the code coverage report. -->
+								<outputDirectory>target/jacoco-ut</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+					<configuration>
+						<systemPropertyVariables>
+							<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+			</plugins>
 		</pluginManagement>
 	</build>
-  
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -239,10 +233,10 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
@@ -253,6 +247,11 @@
 				<artifactId>spring-jms</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-context-support</artifactId>
+	      <version>${spring.version}</version>
+	    </dependency>
 			<dependency>
 				<groupId>javax.annotation</groupId>
 				<artifactId>javax.annotation-api</artifactId>
@@ -271,7 +270,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>log4j-over-slf4j</artifactId>
+				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
@@ -295,6 +294,12 @@
 				<artifactId>aspectjweaver</artifactId>
 				<version>${aspectj.version}</version>
 			</dependency>
+			<!-- 连接池 -->
+			<dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.1.12</version>
+      </dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -427,9 +432,9 @@
 			</dependency>
 			<!-- 拼音 -->
 			<dependency>
-		    <groupId>com.belerweb</groupId>
-		    <artifactId>pinyin4j</artifactId>
-		    <version>${pinyin4j.version}</version>
+				<groupId>com.belerweb</groupId>
+				<artifactId>pinyin4j</artifactId>
+				<version>${pinyin4j.version}</version>
 			</dependency>
 			<!-- 模板引擎 -->
 			<dependency>
@@ -439,39 +444,40 @@
 			</dependency>
 			<!-- 搜索引擎 -->
 			<dependency>
-		    <groupId>org.apache.lucene</groupId>
-		    <artifactId>lucene-core</artifactId>
-		    <version>${lucene.version}</version>
-		  </dependency>
-		  <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-queryparser</artifactId>
-        <version>${lucene.version}</version>
-      </dependency>
-      
-		  <!-- 测试 -->
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-queryparser</artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+
+			<!-- 测试 -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 			</dependency>
-			<dependency> 
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.1.0</version>
-        <scope>test</scope>
-      </dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>1.4.197</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<distributionManagement>
-		<snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
+		<repository>
+			<id>cqwinning-repository</id>
+			<url>http://120.79.137.143:8081/repository/maven-releases/</url>
+		</repository>
 	</distributionManagement>
 </project>
